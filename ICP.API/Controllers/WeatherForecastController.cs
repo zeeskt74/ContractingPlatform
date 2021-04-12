@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Insurance_Contracting_Platform.Controllers
+namespace ICP.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
