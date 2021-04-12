@@ -13,8 +13,10 @@ namespace ICP.SQLite.Models
 
         [Required]
         public int MainContractorId { get; set; }
+        public virtual Contractor MainContractor { get; set; }
 
         [Required]
         public int RelationContractorId { get; set; }
+        public virtual Contractor RelationContractor { get; set; }
     }
 }

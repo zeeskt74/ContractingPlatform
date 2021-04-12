@@ -33,19 +33,19 @@ namespace ICP.Services
             return _contractorRepo.Save(c);
         }
 
-        public int UpdateContractor(ContractorVM contractor)
-        {
-            var c = new Contractor()
-            {
-                Id = contractor.Id,
-                Name = contractor.Name,
-                Phone = contractor.Phone,
-                Type = ContractorType.Carrier, // Info is not provided which one should we select on save.
-                HealthStatus = RandomlyPickStatus()
-            };
+        //public int UpdateContractor(ContractorVM contractor)
+        //{
+        //    var c = new Contractor()
+        //    {
+        //        Id = contractor.Id,
+        //        Name = contractor.Name,
+        //        Phone = contractor.Phone,
+        //        Type = ContractorType.Carrier, // Info is not provided which one should we select on save.
+        //        HealthStatus = RandomlyPickStatus()
+        //    };
 
-            return _contractorRepo.Save(c);
-        }
+        //    return _contractorRepo.Save(c);
+        //}
 
 
         private ContractorHealthStatus RandomlyPickStatus()

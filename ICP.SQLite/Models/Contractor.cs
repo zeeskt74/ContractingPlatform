@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ICP.SQLite.Models
 {
@@ -24,6 +25,7 @@ namespace ICP.SQLite.Models
         [StringLength(6)]
         public string HealthStatus { get; set; }
 
-        public List<Contract> Contracts { get; set; }
+        [NotMapped]
+        public virtual List<Contract> Contracts { get; set; }
     }
 }
