@@ -8,5 +8,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ICP.Services\ICP.Services.csproj" />
+  </ItemGroup>
+
 
 </Project>
