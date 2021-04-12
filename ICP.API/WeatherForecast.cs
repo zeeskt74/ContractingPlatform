@@ -1,6 +1,6 @@
 using System;
 
-namespace Insurance_Contracting_Platform
+namespace ICP.API
 {
     public class WeatherForecast
     {

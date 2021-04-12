@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Insurance_Contracting_Platform
+namespace ICP.API
 {
     public class Program
     {
