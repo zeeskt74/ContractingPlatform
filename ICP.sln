@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.Services", "ICP.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.Repositories", "ICP.Repositories\ICP.Repositories.csproj", "{DA9FB42F-1C5E-4C82-AB61-4DC7C8D65A71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICP.Tests", "ICP.Tests\ICP.Tests.csproj", "{5F8E3632-C08D-44A2-BEBF-A04796BD77CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.Tests", "ICP.Tests\ICP.Tests.csproj", "{5F8E3632-C08D-44A2-BEBF-A04796BD77CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
