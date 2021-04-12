@@ -10,6 +10,8 @@ namespace ICP.SQLite
     {
         private static bool _created = false;
         public DbSet<Contractor> Contractors { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
+
         public ICPDbContext() : base()
         {
         }

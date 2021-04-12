@@ -1,12 +1,14 @@
-﻿namespace ICP.Repositories.Dtos
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ICP.Services.Models
 {
-    public class Contractor
+    public class ContractorVM
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
-        public ContractorType Type { get; set; }
-        public ContractorHealthStatus HealthStatus { get; set; }
     }
 }

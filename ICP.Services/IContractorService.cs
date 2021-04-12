@@ -1,4 +1,5 @@
 ﻿using ICP.Repositories.Dtos;
+using ICP.Services.Models;
 
 namespace ICP.Services
 {
@@ -6,8 +7,8 @@ namespace ICP.Services
     {
         Contractor GetContractorById(int id);
 
-        int AddContractor(Contractor contractor);
+        int AddContractor(ContractorVM contractor);
 
-        int UpdateContractor(Contractor contractor);
+        int UpdateContractor(ContractorVM contractor);
     }
 }

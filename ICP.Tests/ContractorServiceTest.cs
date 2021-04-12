@@ -1,6 +1,7 @@
 using ICP.Repositories;
 using ICP.Repositories.Dtos;
 using ICP.Services;
+using ICP.Services.Models;
 using ICP.SQLite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -42,7 +43,7 @@ namespace ICP.Tests
         public void New_Contractor_Saved_successfully()
         {
             //Arrange
-            var c = new Contractor() { Name = "Test12345", Phone = "00123456789", Type = ContractorType.MGA, HealthStatus = ContractorHealthStatus.Red };
+            var c = new ContractorVM() { Name = "Test12345", Phone = "00123456789" };
             _repo.Setup(r => r.Save(It.IsAny<Contractor>())).Returns(1);
 
             //Act

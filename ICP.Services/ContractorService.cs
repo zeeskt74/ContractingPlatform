@@ -1,5 +1,6 @@
 ﻿using ICP.Repositories;
 using ICP.Repositories.Dtos;
+using ICP.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,42 +20,64 @@ namespace ICP.Services
             return _contractorRepo.Get(id);
         }
 
-        public int AddContractor(Contractor contractor)
+        public int AddContractor(ContractorVM contractor)
         {
+            var c = new Contractor()
+            {
+                Name = contractor.Name,
+                Phone = contractor.Phone,
+                Type = ContractorType.Carrier, // Info is not provided which one should we select on save.
+                HealthStatus = RandomlyPickStatus()
+            };
 
-            return _contractorRepo.Save(contractor);
+            return _contractorRepo.Save(c);
         }
 
-        public int UpdateContractor(Contractor contractor)
+        public int UpdateContractor(ContractorVM contractor)
         {
-            return _contractorRepo.Save(contractor);
+            var c = new Contractor()
+            {
+                Id = contractor.Id,
+                Name = contractor.Name,
+                Phone = contractor.Phone,
+                Type = ContractorType.Carrier, // Info is not provided which one should we select on save.
+                HealthStatus = RandomlyPickStatus()
+            };
+
+            return _contractorRepo.Save(c);
         }
 
 
-
-        private string RandomlyPickStatus()
+        private ContractorHealthStatus RandomlyPickStatus()
         {
-            Random r = new Random();
-            string[] statuses = new string[] { "60%", "20%", "m20%" };
-            int randomIndex = r.Next(statuses.Length);
-            return statuses[randomIndex];
+            Random r = new Random();            
+            int perCent = r.Next(0, 100);
+            return GetStatus(perCent);
         }
 
-        private ContractorHealthStatus GetStatus(string value)
+        /* This one is impelemented base on below assumptions
+         * 
+         *   Green = 60%  => if it's greater than or equal to 60% 
+         *   Yellow = 20% => if it's greater than or equal to 20% and less than 60%
+         *   Red = m20% => it's less than 20%             
+         *
+         */
+        private ContractorHealthStatus GetStatus(int perCent)
         {
             ContractorHealthStatus status = ContractorHealthStatus.Unknown;
-            switch (value)
+            if (perCent >= 60) 
             {
-                case "60%":
-                    status = ContractorHealthStatus.Green;
-                    break;
-                case "20%":
-                    status = ContractorHealthStatus.Yellow;
-                    break;
-                case "m20%":
-                    status = ContractorHealthStatus.Red;
-                    break;
+                status = ContractorHealthStatus.Green;
             }
+            else if(perCent >= 20 && perCent < 60)
+            {
+                status = ContractorHealthStatus.Yellow;
+            }
+            else if(perCent < 20)
+            {
+                status = ContractorHealthStatus.Red;
+            }
+
             return status;
         }
     }

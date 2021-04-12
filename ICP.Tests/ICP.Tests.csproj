@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ICP.API\ICP.API.csproj" />
     <ProjectReference Include="..\ICP.Repositories\ICP.Repositories.csproj" />
     <ProjectReference Include="..\ICP.Services\ICP.Services.csproj" />
     <ProjectReference Include="..\ICP.SQLite\ICP.SQLite.csproj" />
