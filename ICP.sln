@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance_Contracting_Platform", "Insurance_Contracting_Platform\Insurance_Contracting_Platform.csproj", "{F4703569-ECC3-448B-8A8D-63248730BC17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICP.API", "ICP.API\ICP.API.csproj", "{F4703569-ECC3-448B-8A8D-63248730BC17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
