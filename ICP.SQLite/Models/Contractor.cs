@@ -21,5 +21,6 @@ namespace ICP.SQLite.Models
 
         [StringLength(6)]
         public string HealthStatus { get; set; }
+
     }
 }

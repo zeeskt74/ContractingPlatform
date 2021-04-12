@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ICP.SQLite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace ICP.API
@@ -32,7 +26,7 @@ namespace ICP.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Insurance Contracting Platform API", Version = "v1" });
             });
 
-            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlite(Configuration.GetConnectionString("cs")));
+            services.ConfigureDb(Configuration.GetConnectionString("icpdbcon"));
 
             services.AddControllers();
         }

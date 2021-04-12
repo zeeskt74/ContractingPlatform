@@ -8,4 +8,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="db\icpdb.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
