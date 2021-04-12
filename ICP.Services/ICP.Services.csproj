@@ -8,4 +8,8 @@
     <ProjectReference Include="..\ICP.Repositories\ICP.Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

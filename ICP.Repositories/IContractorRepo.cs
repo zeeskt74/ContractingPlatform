@@ -1,4 +1,4 @@
-﻿using ICP.Repositories.Models;
+﻿using ICP.Repositories.Dtos;
 
 namespace ICP.Repositories
 {

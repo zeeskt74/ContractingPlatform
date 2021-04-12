@@ -1,4 +1,4 @@
-﻿namespace ICP.Repositories.Models
+﻿namespace ICP.Repositories.Dtos
 {
     public enum ContractorType
     {
