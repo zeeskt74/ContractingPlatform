@@ -32,6 +32,8 @@ namespace ICP.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Insurance Contracting Platform API", Version = "v1" });
             });
 
+            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlite(Configuration.GetConnectionString("cs")));
+
             services.AddControllers();
         }
 
