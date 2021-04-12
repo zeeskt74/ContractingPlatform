@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.API", "ICP.API\ICP.API.
 		{92768198-EBAF-4C28-AC39-14A9955431F6} = {92768198-EBAF-4C28-AC39-14A9955431F6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICP.Services", "ICP.Services\ICP.Services.csproj", "{92768198-EBAF-4C28-AC39-14A9955431F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.Services", "ICP.Services\ICP.Services.csproj", "{92768198-EBAF-4C28-AC39-14A9955431F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICP.Repositories", "ICP.Repositories\ICP.Repositories.csproj", "{DA9FB42F-1C5E-4C82-AB61-4DC7C8D65A71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.Repositories", "ICP.Repositories\ICP.Repositories.csproj", "{DA9FB42F-1C5E-4C82-AB61-4DC7C8D65A71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICP.Tests", "ICP.Tests\ICP.Tests.csproj", "{5F8E3632-C08D-44A2-BEBF-A04796BD77CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{DA9FB42F-1C5E-4C82-AB61-4DC7C8D65A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA9FB42F-1C5E-4C82-AB61-4DC7C8D65A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA9FB42F-1C5E-4C82-AB61-4DC7C8D65A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F8E3632-C08D-44A2-BEBF-A04796BD77CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F8E3632-C08D-44A2-BEBF-A04796BD77CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F8E3632-C08D-44A2-BEBF-A04796BD77CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F8E3632-C08D-44A2-BEBF-A04796BD77CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
