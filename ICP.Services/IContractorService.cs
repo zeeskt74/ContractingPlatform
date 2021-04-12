@@ -9,6 +9,6 @@ namespace ICP.Services
 
         int AddContractor(ContractorVM contractor);
 
-        int UpdateContractor(ContractorVM contractor);
+        //int UpdateContractor(ContractorVM contractor);
     }
 }
