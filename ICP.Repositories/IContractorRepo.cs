@@ -1,4 +1,5 @@
 ﻿using ICP.Repositories.Dtos;
+using System.Collections.Generic;
 
 namespace ICP.Repositories
 {
@@ -6,5 +7,6 @@ namespace ICP.Repositories
     {
         Contractor Get(int id);
         int Save(Contractor contractor);
+        List<Contractor> GetAll();
     }
 }

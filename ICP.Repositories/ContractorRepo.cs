@@ -2,6 +2,7 @@
 using ICP.SQLite;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,16 +35,20 @@ namespace ICP.Repositories
             }
         }
 
+        public List<Contractor> GetAll()
+        {
+            return _db.Contractors.Select(ConvertToRepoModel).ToList();
+        }
 
 
-        
         private int Update(Contractor contractor)
         {
-            var dbc = _db.Contractors.Find(contractor.Id);
+            var dbc = UpdateDbModel(_db.Contractors.Find(contractor.Id), contractor);
 
             dbc.Id = contractor.Id;
             dbc.Name = contractor.Name;
             dbc.Phone = contractor.Phone;
+            dbc.Address = contractor.Address;
             dbc.Type = contractor.Type.ToString();
             dbc.HealthStatus = contractor.HealthStatus.ToString();
 
@@ -53,19 +58,24 @@ namespace ICP.Repositories
 
         private int Insert(Contractor contractor)
         {
-            var dbc = new SQLite.Models.Contractor()
-            {
-                Id = contractor.Id,
-                Name = contractor.Name,
-                Phone = contractor.Phone,
-                Type = contractor.Type.ToString(),
-                HealthStatus = contractor.HealthStatus.ToString()
-            };
-
+            var dbc = UpdateDbModel(new SQLite.Models.Contractor(), contractor);
+            
             _db.Contractors.Add(dbc);
             return _db.SaveChanges();
         }
 
+
+        private SQLite.Models.Contractor UpdateDbModel(SQLite.Models.Contractor dbc, Contractor dto)
+        {
+            dbc.Id = dto.Id;
+            dbc.Name = dto.Name;
+            dbc.Phone = dto.Phone;
+            dbc.Address = dto.Address;
+            dbc.Type = dto.Type.ToString();
+            dbc.HealthStatus = dto.HealthStatus.ToString();
+
+            return dbc;
+        }
 
         private Contractor ConvertToRepoModel(SQLite.Models.Contractor dbContractor)
         {
@@ -79,6 +89,7 @@ namespace ICP.Repositories
             {
                 Id = dbContractor.Id,
                 Name = dbContractor.Name,
+                Address = dbContractor.Address,
                 Phone = dbContractor.Phone,
                 Type = type,
                 HealthStatus = status

@@ -3,6 +3,7 @@ using ICP.Repositories.Dtos;
 using ICP.Services.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ICP.Services
@@ -33,19 +34,21 @@ namespace ICP.Services
             return _contractorRepo.Save(c);
         }
 
-        //public int UpdateContractor(ContractorVM contractor)
-        //{
-        //    var c = new Contractor()
-        //    {
-        //        Id = contractor.Id,
-        //        Name = contractor.Name,
-        //        Phone = contractor.Phone,
-        //        Type = ContractorType.Carrier, // Info is not provided which one should we select on save.
-        //        HealthStatus = RandomlyPickStatus()
-        //    };
+        public IEnumerable<ContractorListVM> GetAllContractors()
+        {
+            return _contractorRepo.GetAll()?
+                                    .Select(x => new ContractorListVM() 
+                                        { 
+                                            Id = x.Id, 
+                                            Name = x.Name 
+                                        }
+                                    );
+        }
 
-        //    return _contractorRepo.Save(c);
-        //}
+        public IEnumerable<ContractorListVM> GetAllOthers(int contractorId)
+        {
+            return GetAllContractors().Where(x => x.Id != contractorId);
+        }
 
 
         private ContractorHealthStatus RandomlyPickStatus()

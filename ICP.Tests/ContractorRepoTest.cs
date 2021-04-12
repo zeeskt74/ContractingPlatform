@@ -18,7 +18,8 @@ namespace ICP.Tests
         {
             _db = new ICPTestDbContext();
 
-            _db.Contractors.Add(new SQLite.Models.Contractor() { Name = "Test", Phone = "123456789", Type = "Carrier", HealthStatus = "Yellow" });
+            _db.Contractors.Add(new SQLite.Models.Contractor() { Name = "Test 1", Address = "ABC", Phone = "123456789", Type = "Carrier", HealthStatus = "Yellow" });
+            _db.Contractors.Add(new SQLite.Models.Contractor() { Name = "Test 2", Address = "XYZ", Phone = "123456789", Type = "Carrier", HealthStatus = "Green" });
             _db.SaveChanges();
 
             _repo = new ContractorRepo(_db);

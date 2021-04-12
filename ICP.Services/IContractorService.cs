@@ -1,5 +1,6 @@
 ﻿using ICP.Repositories.Dtos;
 using ICP.Services.Models;
+using System.Collections.Generic;
 
 namespace ICP.Services
 {
@@ -9,6 +10,7 @@ namespace ICP.Services
 
         int AddContractor(ContractorVM contractor);
 
-        //int UpdateContractor(ContractorVM contractor);
+        IEnumerable<ContractorListVM> GetAllContractors();
+        IEnumerable<ContractorListVM> GetAllOthers(int contractorId);
     }
 }
