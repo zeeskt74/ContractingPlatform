@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ICP.Repositories
 {
-    public class ServicesDI
+    public static class ServicesDI
     {
-        public void ConfigureServices(IServiceCollection services)
+        public static void ConfigureICPServices(this IServiceCollection services)
         {
             
         }

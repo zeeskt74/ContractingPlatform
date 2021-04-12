@@ -5,11 +5,11 @@ using System.Text;
 
 namespace ICP.Repositories
 {
-    public class RepositoriesDI
+    public static class RepositoriesDI
     {
-        public void ConfigureRepos(IServiceCollection services)
+        public static void ConfigureRepos(this IServiceCollection services)
         {
-            
+            services.AddTransient<IContractorRepo, ContractorRepo>();
         }
     }
 }

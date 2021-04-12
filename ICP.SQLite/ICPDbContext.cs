@@ -6,10 +6,10 @@ using System.Text;
 
 namespace ICP.SQLite
 {
-    class ICPDbContext : DbContext
+    public class ICPDbContext : DbContext
     {
         private static bool _created = false;
-        public DbSet<Contractor> Contractor { get; set; }
+        public DbSet<Contractor> Contractors { get; set; }
         public ICPDbContext() : base()
         {
         }
@@ -25,6 +25,10 @@ namespace ICP.SQLite
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionbuilder)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         }
     }

@@ -1,3 +1,4 @@
+using ICP.Repositories;
 using ICP.SQLite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,8 @@ namespace ICP.API
             });
 
             services.ConfigureDb(Configuration.GetConnectionString("icpdbcon"));
+            services.ConfigureRepos();
+            services.ConfigureICPServices();
 
             services.AddControllers();
         }

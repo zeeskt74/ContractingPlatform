@@ -13,4 +13,15 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ICP.Repositories\ICP.Repositories.csproj" />
+    <ProjectReference Include="..\ICP.SQLite\ICP.SQLite.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="db\icptestdb.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
