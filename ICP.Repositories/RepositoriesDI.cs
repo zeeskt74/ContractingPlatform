@@ -10,6 +10,7 @@ namespace ICP.Repositories
         public static void ConfigureRepos(this IServiceCollection services)
         {
             services.AddTransient<IContractorRepo, ContractorRepo>();
+            services.AddTransient<IContractRepo, ContractRepo>();
         }
     }
 }

@@ -29,10 +29,23 @@ namespace ICP.Repositories
             return ConvertToRepoModel(c);
         }
 
+        public List<Contract> GetByMainContractId(int id)
+        {
+            return _db.Contracts
+                        .Include(c => c.MainContractor)
+                        .Include(c => c.RelationContractor)
+                        .Where(c => c.MainContractorId == id)
+                        .Select(ConvertToRepoModel)
+                        .ToList();
+        }
+
         public int Save(Contract contractDto)
         {
 
             if (IsExists(contractDto))
+                return 0;
+
+            if (!IsValid(contractDto))
                 return 0;
 
             if (IsSelfContract(contractDto))
@@ -76,6 +89,11 @@ namespace ICP.Repositories
             return GetContract(dto.MainContactor.Id, dto.RelationContactor.Id) != null;
         }
 
+        private Boolean IsValid(Contract dto)
+        {
+            return _db.Contractors.Find(dto.MainContactor.Id) != null &&
+                   _db.Contractors.Find(dto.RelationContactor.Id) != null;
+        }
 
         private SQLite.Models.Contract GetContract(int mainContractId, int relationContractId)
         {

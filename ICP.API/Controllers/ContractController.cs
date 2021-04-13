@@ -12,30 +12,28 @@ namespace ICP.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContractorController : ControllerBase
+    public class ContractController : ControllerBase
     {
-        private readonly IContractorService _service;
+        private readonly IContractService _service;
 
-        public ContractorController(IContractorService service)
+        public ContractController(IContractService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public IActionResult AddContractor([FromBody]ContractorVM contractor)
+        public IActionResult AddContract(int mainContractId, int relationContractId)
         {
-            if (contractor == null) return new BadRequestObjectResult($"{nameof(contractor)} can not be null.");
-
-            var result = _service.AddContractor(contractor);
+            var result = _service.AddContract(mainContractId, relationContractId);
 
             return new OkObjectResult(result);
         }
 
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetContracts(int mainContractId)
         {
-            var result = _service.GetAllContractors();
+            var result = _service.GetContracts(mainContractId);
 
             return new OkObjectResult(result);
         }

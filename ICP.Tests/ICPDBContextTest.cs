@@ -11,7 +11,7 @@ namespace ICP.Tests
         [TestMethod]
         public void DBContaxt_created_successfully()
         {
-            var db = new ICPDbContext();
+            var db = new ICPTestDbContext();
 
             Assert.IsNotNull(db.ContextId);
         }
