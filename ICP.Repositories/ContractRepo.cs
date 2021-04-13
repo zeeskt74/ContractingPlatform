@@ -39,6 +39,21 @@ namespace ICP.Repositories
                         .ToList();
         }
 
+        public List<Contract> GetGraphByMainContractId(int id)
+        {
+            return _db.Contracts
+                        .Where(c => c.MainContractorId == id)
+                        .Select(ConvertToRepoModel)
+                        .ToList();
+        }
+
+        public List<Contract> GetAll()
+        {
+            return _db.Contracts
+                        .Select(ConvertToRepoModel)
+                        .ToList();
+        }
+
         public int Save(Contract contractDto)
         {
 
@@ -112,12 +127,12 @@ namespace ICP.Repositories
                 MainContactor = new ContractDetail()
                 {
                     Id = dbContract.MainContractorId,
-                    Name = dbContract.MainContractor.Name
+                    Name = dbContract.MainContractor?.Name
                 },
                 RelationContactor = new ContractDetail()
                 {
                     Id = dbContract.RelationContractorId,
-                    Name = dbContract.RelationContractor.Name
+                    Name = dbContract.RelationContractor?.Name
                 }
             };
         }

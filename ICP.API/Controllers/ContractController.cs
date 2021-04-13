@@ -37,5 +37,15 @@ namespace ICP.API.Controllers
 
             return new OkObjectResult(result);
         }
+
+
+        [HttpGet("getshortestpath")]
+        public IActionResult GetShortPath(int mainContractId, int relationContractId)
+        {
+            var result = _service.GetContracts(mainContractId);
+
+            return new OkObjectResult(result);
+        }
+
     }
 }

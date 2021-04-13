@@ -7,7 +7,8 @@ namespace ICP.Repositories
     {
         Contract Get(int id);
         List<Contract> GetByMainContractId(int id);
-
+        List<Contract> GetGraphByMainContractId(int id);
+        List<Contract> GetAll();
         int Save(Contract contract);
         int Remove(Contract contract);
     }

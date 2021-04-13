@@ -8,5 +8,7 @@ namespace ICP.Services
         IEnumerable<Contract> GetContracts(int mainContractId);        
 
         int AddContract(int mainContractId, int relationContractId);
+
+        dynamic GetShortestPath(int mainContractId, int relationContractId);
     }
 }
