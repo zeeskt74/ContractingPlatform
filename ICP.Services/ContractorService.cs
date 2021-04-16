@@ -27,6 +27,7 @@ namespace ICP.Services
             {
                 Name = contractor.Name,
                 Phone = contractor.Phone,
+                Address = contractor.Address,
                 Type = ContractorType.Carrier, // Info is not provided which one should we select on save.
                 HealthStatus = RandomlyPickStatus()
             };
@@ -40,7 +41,8 @@ namespace ICP.Services
                                     .Select(x => new ContractorListVM() 
                                         { 
                                             Id = x.Id, 
-                                            Name = x.Name 
+                                            Name = x.Name,
+                                            Phone = x.Phone
                                         }
                                     );
         }

@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.Repositories", "ICP.Rep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.Tests", "ICP.Tests\ICP.Tests.csproj", "{5F8E3632-C08D-44A2-BEBF-A04796BD77CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICP.SQLite", "ICP.SQLite\ICP.SQLite.csproj", "{F1F91310-FB38-49A1-A7B5-84A8A0E707B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICP.SQLite", "ICP.SQLite\ICP.SQLite.csproj", "{F1F91310-FB38-49A1-A7B5-84A8A0E707B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICP.Web", "ICP.Web\ICP.Web.csproj", "{D005C9CE-508C-4416-AD49-6D384CDEEC54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{F1F91310-FB38-49A1-A7B5-84A8A0E707B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1F91310-FB38-49A1-A7B5-84A8A0E707B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1F91310-FB38-49A1-A7B5-84A8A0E707B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D005C9CE-508C-4416-AD49-6D384CDEEC54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D005C9CE-508C-4416-AD49-6D384CDEEC54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D005C9CE-508C-4416-AD49-6D384CDEEC54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D005C9CE-508C-4416-AD49-6D384CDEEC54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

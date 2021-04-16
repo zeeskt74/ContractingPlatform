@@ -1,0 +1,25 @@
+<h1 id="tableLabel">Contractors</h1>
+
+<p *ngIf="!contructors"><em>Loading...</em></p>
+
+<a class="btn btn-success float-right spacer" aria-label="Add Contract" [routerLink]="['/addcontract']">Create Contract</a>
+<a class="btn btn-primary float-right spacer" aria-label="Add Contractor" [routerLink]="['/addcontractor']">Add Contractor</a>
+
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="contructors">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contractor of contructors">
+      <td>{{ contractor.id }}</td>
+      <td>{{ contractor.name }}</td>
+      <td>{{ contractor.phone }}</td>
+    </tr>
+  </tbody>
+</table>
+

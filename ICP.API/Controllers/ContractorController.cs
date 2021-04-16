@@ -12,11 +12,11 @@ namespace ICP.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContractorController : ControllerBase
+    public class ContractorsController : ControllerBase
     {
         private readonly IContractorService _service;
 
-        public ContractorController(IContractorService service)
+        public ContractorsController(IContractorService service)
         {
             _service = service;
         }

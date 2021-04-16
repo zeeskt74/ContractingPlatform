@@ -1,0 +1,46 @@
+<h1 id="tableLabel">Create Contract</h1>
+
+<div class="form-group">
+  <label for="contractor1">Contractor</label>
+  <select class="form-control" id="contractor1"
+          required
+          [(ngModel)]="model.mainContractorId" name="contractor1"
+          #contractor1="ngModel">
+    <option *ngFor="let contractor of contractors" [value]="contractor.id">{{contractor.name}}</option>
+  </select>
+  <div [hidden]="contractor1.valid || contractor1.pristine" class="alert alert-danger">
+    Contractor1 is required
+  </div>
+
+  <label for="contractor2">Contractor</label>
+  <select class="form-control" id="contractor2"
+          required
+          [(ngModel)]="model.relationContractorId" name="contractor2"
+          #contractor2="ngModel">
+    <option *ngFor="let contractor of contractors" [value]="contractor.id">{{contractor.name}}</option>
+  </select>
+  <div [hidden]="contractor2.valid || contractor2.pristine" class="alert alert-danger">
+    Contractor2 is required
+  </div>
+
+  <br>
+  <button class="btn btn-primary" type="submit" (click)="onSubmit()">Submit</button>
+</div>
+<div class="form-group">
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="contructs">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>MainContractor</th>
+        <th>RelationalContractorId</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contract of contructs">
+        <td>{{ contractor.id }}</td>
+        <td>{{ contractor.mainContractorName }}</td>
+        <td>{{ contractor.relationalContractorName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
