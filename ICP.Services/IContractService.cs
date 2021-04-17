@@ -5,10 +5,10 @@ namespace ICP.Services
 {
     public interface IContractService
     {
-        IEnumerable<Contract> GetContracts(int mainContractId);        
+        IEnumerable<Contract> GetContracts(int mainContractorId);
+        IEnumerable<Contract> GetAllContracts();
+        int AddContract(int mainContractorId, int relationContractorId);
 
-        int AddContract(int mainContractId, int relationContractId);
-
-        dynamic GetShortestPath(int mainContractId, int relationContractId);
+        dynamic GetShortestPath(int mainContractorId, int relationContractorId);
     }
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
@@ -24,11 +24,11 @@ export class ContractorService {
   }
 
   createContract(addContract: AddContract): Observable<any> {
-    return this.http.post(environment.apiUrl + "Contract",
-                                    {
-                                      mainContractorId: addContract.mainContractorId,
-                                      relationContractorId: addContract.relationContractorId
-                                    });
+    let params = new HttpParams()
+                  .set('mainContractorId', addContract.mainContractorId.toString())
+                  .set('relationContractorId', addContract.relationContractorId.toString());
+
+    return this.http.post(environment.apiUrl + "Contract", params);
   }
 
   getContracts(mainContractorId: number): Observable<any> {
@@ -38,5 +38,9 @@ export class ContractorService {
                                         mainContractorId: mainContractorId.toString()
                                       }
                                     });
+  }
+
+  getAllContracts(): Observable<Contract[]> {
+    return this.http.get<Contract[]>(environment.apiUrl + "Contract/all");
   }
 }

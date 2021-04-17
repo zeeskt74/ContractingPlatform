@@ -50,6 +50,8 @@ namespace ICP.Repositories
         public List<Contract> GetAll()
         {
             return _db.Contracts
+                        .Include(c => c.MainContractor)
+                        .Include(c => c.RelationContractor)
                         .Select(ConvertToRepoModel)
                         .ToList();
         }
@@ -58,10 +60,10 @@ namespace ICP.Repositories
         {
 
             if (IsExists(contractDto))
-                return 0;
+                throw new ArgumentException($"Contract already exitst between {contractDto.MainContactor.Id}:{contractDto.RelationContactor.Id}");
 
             if (!IsValid(contractDto))
-                return 0;
+                throw new ArgumentException($"contractor(s) does not exists {contractDto.MainContactor.Id}:{contractDto.RelationContactor.Id}");
 
             if (IsSelfContract(contractDto))
                 throw new ArgumentException($"MainContactor: {contractDto.MainContactor.Id}, RelationContactor: {contractDto.RelationContactor.Id}, can not contract itself.");

@@ -15,31 +15,37 @@ namespace ICP.Services
             _contractRepo = contractRepo;
         }
 
-        public IEnumerable<Contract> GetContracts(int mainContractId)
+        public IEnumerable<Contract> GetContracts(int mainContractorId)
         {
-            return _contractRepo.GetByMainContractId(mainContractId)
+            return _contractRepo.GetByMainContractId(mainContractorId)
                                 .Select(MapeDto);
         }
 
-        public int AddContract(int mainContractId, int relationContractId)
+        public IEnumerable<Contract> GetAllContracts()
         {
-            return _contractRepo.Save(new Repositories.Dtos.Contract(mainContractId, relationContractId));
+            return _contractRepo.GetAll()
+                                .Select(MapeDto);
+        }
+
+        public int AddContract(int mainContractorId, int relationContractorId)
+        {
+            return _contractRepo.Save(new Repositories.Dtos.Contract(mainContractorId, relationContractorId));
         }
 
 
-        public dynamic GetShortestPath(int mainContractId, int relationContractId)
+        public dynamic GetShortestPath(int mainContractorId, int relationContractorId)
         {
             Queue<int> Q = new Queue<int>();
             HashSet<int> S = new HashSet<int>();
             HashSet<int> T = new HashSet<int>();
-            Q.Enqueue(mainContractId);
-            S.Add(mainContractId);
-            T.Add(mainContractId);
+            Q.Enqueue(mainContractorId);
+            S.Add(mainContractorId);
+            T.Add(mainContractorId);
 
             int element = 0;
             while (Q.Count > 0)
             {
-                if (element != mainContractId)
+                if (element != mainContractorId)
                     T.Remove(element);
 
                 element = Q.Dequeue();
@@ -49,9 +55,9 @@ namespace ICP.Services
                 foreach (var contract in _contractRepo.GetGraphByMainContractId(element))
                 {
                     //stop and return when match if found
-                    if (relationContractId == contract.RelationContactor.Id)
+                    if (relationContractorId == contract.RelationContactor.Id)
                     {
-                        T.Add(relationContractId);
+                        T.Add(relationContractorId);
                         return T;
                     }
 

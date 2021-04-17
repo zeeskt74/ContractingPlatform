@@ -22,18 +22,37 @@ namespace ICP.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddContract(int mainContractId, int relationContractId)
+        public IActionResult AddContract([FromForm]int mainContractorId, [FromForm] int relationContractorId)
         {
-            var result = _service.AddContract(mainContractId, relationContractId);
+            try
+            {
+                var result = _service.AddContract(mainContractorId, relationContractorId);
 
-            return new OkObjectResult(result);
+                return new OkObjectResult(result);
+            }
+            catch(ArgumentException ex)
+            {
+                return new OkObjectResult(ex.Message);
+            }
+            catch
+            {
+                return new BadRequestObjectResult("unable to process your request");
+            }
         }
 
 
         [HttpGet]
-        public IActionResult GetContracts(int mainContractId)
+        public IActionResult GetContracts(int mainContractorId)
         {
-            var result = _service.GetContracts(mainContractId);
+            var result = _service.GetContracts(mainContractorId);
+
+            return new OkObjectResult(result);
+        }
+
+        [HttpGet("all")]
+        public IActionResult GetAllContracts()
+        {
+            var result = _service.GetAllContracts();
 
             return new OkObjectResult(result);
         }
