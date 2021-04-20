@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
+import helper from '../helpers/helper';
 
 import { Addcontractor } from '../Models/AddContractor';
 import { ContractorService } from '../services/contractor-service';
@@ -34,7 +35,7 @@ export class AddcontractorComponent {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription !== null) {
+    if(helper.isNullOrUndefined(this.subscription)) {
       this.subscription.unsubscribe();
     }
   }

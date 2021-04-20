@@ -59,11 +59,21 @@ namespace ICP.API.Controllers
 
 
         [HttpGet("getshortestpath")]
-        public IActionResult GetShortPath(int mainContractId, int relationContractId)
+        public IActionResult GetShortPath(int mainContractorId, int relationContractorId)
         {
-            var result = _service.GetContracts(mainContractId);
+            if (mainContractorId == relationContractorId)
+                return new BadRequestObjectResult("no path exists to self.");
 
-            return new OkObjectResult(result);
+            try
+            {
+                var result = _service.GetShortestPath(mainContractorId, relationContractorId);
+
+                return new OkObjectResult(result);
+            }
+            catch(KeyNotFoundException ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
 
     }

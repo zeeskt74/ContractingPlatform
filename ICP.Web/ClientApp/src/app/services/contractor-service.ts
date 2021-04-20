@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { environment } from "src/environments/environment";
-import { AddContract, Contract } from "../Models/AddContract";
+import { PostContract, Contract } from "../Models/AddContract";
 import { Addcontractor } from "../Models/AddContractor";
 import { ContractorDetail } from "../Models/contractor";
 
@@ -23,7 +23,7 @@ export class ContractorService {
     return this.http.post(environment.apiUrl + "Contractors", contractor);
   }
 
-  createContract(addContract: AddContract): Observable<any> {
+  createContract(addContract: PostContract): Observable<any> {
     let params = new HttpParams()
                   .set('mainContractorId', addContract.mainContractorId.toString())
                   .set('relationContractorId', addContract.relationContractorId.toString());
@@ -42,5 +42,12 @@ export class ContractorService {
 
   getAllContracts(): Observable<Contract[]> {
     return this.http.get<Contract[]>(environment.apiUrl + "Contract/all");
+  }
+
+  getShortestPath(contract: PostContract): Observable<any> {
+    let params = new HttpParams()
+                  .set('mainContractorId', contract.mainContractorId.toString())
+                  .set('relationContractorId', contract.relationContractorId.toString());
+    return this.http.get<Contract[]>(environment.apiUrl + "Contract/getshortestpath",{ params });
   }
 }

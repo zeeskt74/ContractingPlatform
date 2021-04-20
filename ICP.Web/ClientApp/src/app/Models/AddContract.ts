@@ -1,4 +1,4 @@
-export class AddContract {
+export class PostContract {
   constructor(
     public mainContractorId: number,
     public relationContractorId: number

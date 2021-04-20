@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
+import helper from '../helpers/helper';
 
 import { ContractorDetail } from '../Models/contractor';
 import { ContractorService } from '../services/contractor-service';
@@ -25,7 +26,7 @@ export class ContractorsComponent implements OnInit, OnDestroy  {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription !== null) {
+    if(helper.isNullOrUndefined(this.subscription)) {
       this.subscription.unsubscribe();
     }
   }

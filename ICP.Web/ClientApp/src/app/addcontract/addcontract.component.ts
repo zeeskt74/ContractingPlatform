@@ -1,8 +1,9 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { AddContract, Contract } from '../Models/AddContract';
+import { PostContract, Contract } from '../Models/AddContract';
 import { Contractor } from '../Models/contractor';
 import { ContractorService } from '../services/contractor-service';
+import helper from '../helpers/helper';
 
 @Component({
   selector: 'app-addcontract',
@@ -12,34 +13,28 @@ import { ContractorService } from '../services/contractor-service';
 export class AddcontractComponent implements OnInit, OnDestroy {
   public contractors: Contractor[];
   public contracts: Contract[];
-  public model: AddContract;
 
-  private isSuccessful: boolean;
+  private isSuccessful: boolean = false;
   private message: string;
-  private subscription: Subscription;
   private cSubscription: Subscription;
 
   constructor(private service: ContractorService) {
-    this.model = new AddContract(0,0);
+
   }
 
   ngOnInit() {
-    this.getAllContractors();
     this.getAllContracts();
   }
 
   ngOnDestroy(): void {
-    if(this.subscription !== null) {
-      this.subscription.unsubscribe();
-    }
-    if(this.cSubscription !== null) {
+    if(helper.isNullOrUndefined(this.cSubscription)) {
       this.cSubscription.unsubscribe();
     }
   }
 
-  onSubmit() {
+  onSubmit(model: PostContract) {
     this.message = '';
-    this.service.createContract(this.model)
+    this.service.createContract(model)
                 .subscribe(
                   () => {
                     this.getAllContracts();
@@ -50,16 +45,6 @@ export class AddcontractComponent implements OnInit, OnDestroy {
                     this.isSuccessful = false;
                     this.message = errorRes.error.text;
                   });
-  }
-
-
-  getAllContractors(): void {
-    this.subscription = this.service
-                              .getAllContractors()
-                              .subscribe((res) => {
-                                this.contractors = res;
-                              },
-                              error => console.error(error));
   }
 
   getAllContracts(): void {

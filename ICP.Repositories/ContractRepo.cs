@@ -56,6 +56,27 @@ namespace ICP.Repositories
                         .ToList();
         }
 
+        public List<Contract> Get(Func<SQLite.Models.Contract, bool> predicate)
+        {
+            return _db.Contracts
+                        .Include(c => c.MainContractor)
+                        .Include(c => c.RelationContractor)
+                        .Where(predicate)
+                        .Select(ConvertToRepoModel)
+                        .ToList();
+        }
+
+        public Dictionary<int, HashSet<int>> GetTree()
+        {
+            return _db.Contractors
+                                .AsEnumerable()
+                                .GroupJoin(_db.Contracts.AsEnumerable(),
+                                     contractor => contractor.Id,
+                                     contract => contract.MainContractorId,
+                                     (contractor, contacts) => new { contractor.Id, contacts })                                
+                                .ToDictionary(x => x.Id, v => v.contacts.Select(c => c.RelationContractorId).ToHashSet());
+        }
+
         public int Save(Contract contractDto)
         {
 

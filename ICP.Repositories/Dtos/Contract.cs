@@ -4,6 +4,11 @@ using System.Text;
 
 namespace ICP.Repositories.Dtos
 {
+    public class ContractTree
+    {
+        public Dictionary<int, HashSet<int>> ContractList { get; } = new Dictionary<int, HashSet<int>>();
+    }
+
     public class Contract
     {
         public Contract()
