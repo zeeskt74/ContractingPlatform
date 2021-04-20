@@ -10,17 +10,23 @@ import { ContractorService } from '../services/contractor-service';
 export class ShortestPathComponent implements OnInit {
   public paths: number[];
 
+  private message: string;
+
   constructor(private service: ContractorService) { }
 
   ngOnInit() {
   }
 
   onShortestPath(model: PostContract) {
+    this.message = '';
     this.service.getShortestPath(model)
                 .subscribe(
                   (res) => {
                     this.paths = res;
                   },
-                  error => console.error(error));
+                  (errorRes) => {
+                    this.message = errorRes.error;
+                    console.error(errorRes);
+                  });
   }
 }

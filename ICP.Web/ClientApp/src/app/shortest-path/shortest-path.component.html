@@ -1,5 +1,6 @@
 <h1 id="tableLabel">Shortest Contracting Chain</h1>
 <app-contractlist (submit)="onShortestPath($event)"></app-contractlist>
+<span [hidden]="message === ''">{{ message }}</span>
 <ng-container *ngFor="let path of paths">
   <span *ngIf="paths[0] === path">{{ path }}</span>
     <span *ngIf="paths[0] !== path">--></span>
