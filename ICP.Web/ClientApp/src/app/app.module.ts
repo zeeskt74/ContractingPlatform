@@ -21,8 +21,6 @@ import { CommonModule } from '@angular/common';
     AppComponent,
     NavMenuComponent,
     //HomeComponent,
-    //CounterComponent,
-    //FetchDataComponent,
     ContractorsComponent,
     AddcontractorComponent,
     AddcontractComponent,
@@ -36,8 +34,6 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: ContractorsComponent, pathMatch: 'full' },
-      //{ path: 'counter', component: CounterComponent },
-      //{ path: 'fetch-data', component: FetchDataComponent },
       { path: 'contractors', component: ContractorsComponent },
       { path: 'addcontractor', component: AddcontractorComponent },
       { path: 'addcontract', component: AddcontractComponent },

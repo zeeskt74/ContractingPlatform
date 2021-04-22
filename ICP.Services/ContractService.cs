@@ -10,9 +10,11 @@ namespace ICP.Services
     public class ContractService : IContractService
     {
         private readonly IContractRepo _contractRepo;
-        public ContractService(IContractRepo contractRepo)
+        private readonly IContractorRepo _contractorRepo;
+        public ContractService(IContractRepo contractRepo, IContractorRepo contractorRepo)
         {
             _contractRepo = contractRepo;
+            _contractorRepo = contractorRepo;
         }
 
         public IEnumerable<Contract> GetContracts(int mainContractorId)
@@ -98,15 +100,52 @@ namespace ICP.Services
         //    return list.Exists(x => x.RelationContactor != null) ? true : false;
         //}
 
-
-
         public dynamic GetShortestPath(int mainContractorId, int relationContractorId)
         {
-            Queue<int> Q = new Queue<int>();
-            HashSet<int> S = new HashSet<int>();
-            HashSet<int> path = new HashSet<int>();
+            var nodeVisited = GetShortestPathByBFS(mainContractorId, relationContractorId);
 
-            // 1- Check these items have any connections
+            if(nodeVisited == null)
+                throw new KeyNotFoundException("no path exists.");
+
+
+            var path = RemoveInvalidNodes(nodeVisited);
+
+            return path;
+        }
+
+        private HashSet<Repositories.Dtos.Contract> RemoveInvalidNodes(HashSet<Repositories.Dtos.Contract> nodeVisited)
+        {
+            var path = new HashSet<Repositories.Dtos.Contract>();
+            nodeVisited.Reverse();
+            var nodes = nodeVisited.ToArray();
+
+            path.Add(nodes[0]);
+
+            if (nodes.Count() == 2)
+            {
+                path.Add(nodes[1]);
+                return path;
+            }
+
+            for (var i= 1; i < nodeVisited.Count()-1; i++)
+            {
+                if (nodes[i].MainContactor.Id == nodes[i + 1].RelationContactor.Id)
+                {
+                    path.Add(nodes[i]);
+                }
+            }
+
+            return path;
+        }
+
+        public HashSet<Repositories.Dtos.Contract> GetShortestPathByBFS(int mainContractorId, int relationContractorId)
+        {
+            Queue<int> Q = new Queue<int>();
+            HashSet<Repositories.Dtos.Contract> path = new HashSet<Repositories.Dtos.Contract>();
+
+            var contaract = _contractRepo.Get(mainContractorId);
+
+            // 1- Check these items have any possible connections
             var clist = _contractRepo.Get(x => x.MainContractorId == mainContractorId);
             if (clist == null)
                 throw new KeyNotFoundException("no path exists.");
@@ -117,31 +156,27 @@ namespace ICP.Services
 
 
             Q.Enqueue(mainContractorId);
-            S.Add(mainContractorId);
-            path.Add(mainContractorId);
+            path.Add(contaract);
+            //path.Add(mainContractorId);
 
             int element = 0;
             while (Q.Count > 0)
             {
-                if (element != mainContractorId)
-                    path.Remove(element);
-
                 element = Q.Dequeue();
-                path.Add(element); //Add current
 
                 foreach (var contract in _contractRepo.GetGraphByMainContractId(element))
                 {
                     //stop and return when match if found
                     if (relationContractorId == contract.RelationContactor.Id)
                     {
-                        path.Add(relationContractorId);
+                        path.Add(_contractRepo.Get(contract.RelationContactor.Id));
                         return path;
                     }
 
-                    if (!S.Contains(contract.RelationContactor.Id))
+                    if (path.FirstOrDefault(x => x.Id == contract.RelationContactor.Id) == null)
                     {
                         Q.Enqueue(contract.RelationContactor.Id);
-                        S.Add(contract.RelationContactor.Id);
+                        path.Add(_contractRepo.Get(contract.RelationContactor.Id));
                     }
                 }
             }
